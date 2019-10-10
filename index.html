@@ -258,27 +258,16 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>这是在2019年9月7日有赞面试的过程中被问到的一题。</p>
-<p>由于ECMAScript的变量是松散类型的，即可以用来存放任何类型的数据，变量的数据类型由变量存储的值来确定。<br>ES6中规定有6种简单数据类型(也称为基本数据类型)<code>:Undefined</code>、<code>Null</code>、<code>Boolean</code>、<code>Number</code>、<code>String</code>、<code>Symbol</code>。<br>一种复杂数据类型:<code>Object</code>。</p>
-<p>检测类型的几几种基本的方式：typeof 、instanceof、 Object.prototype.toString.call()</p>
-<h3 id="typeof：是一个一元运算符，放在一个运算数之前，返回一个字符串，说明该运算数的类型"><a href="#typeof：是一个一元运算符，放在一个运算数之前，返回一个字符串，说明该运算数的类型" class="headerlink" title="typeof：是一个一元运算符，放在一个运算数之前，返回一个字符串，说明该运算数的类型"></a>typeof：是一个一元运算符，放在一个运算数之前，返回一个字符串，说明该运算数的类型</h3><p>语法：typeof “a”,或者typeof(“a”)</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var <span class="built_in">test</span> = <span class="function"><span class="title">function</span></span> ()&#123;</span><br><span class="line">   console.log(<span class="string">"hello world"</span>);</span><br><span class="line">&#125;</span><br><span class="line">var testUn;</span><br><span class="line">console.log(typeof <span class="string">"hello"</span>)   //<span class="string">"string"</span></span><br><span class="line">console.log(typeof 123)         //<span class="string">"number"</span></span><br><span class="line">console.log(typeof undefined)   //<span class="string">"undefined"</span></span><br><span class="line">console.log(typeof <span class="literal">true</span>)        //<span class="string">"boolean"</span></span><br><span class="line">console.log(typeof <span class="built_in">test</span>)        //<span class="string">"function"</span></span><br><span class="line">console.log(typeof testUn)      //<span class="string">"undefined"</span></span><br></pre></td></tr></table></figure>
-
-<p>此外,使用typeof测试NaN的类型为Number类型，若要判断是否为NaN,需使用isNaN()</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">console.log(typeof NaN)        //<span class="string">"number"</span></span><br><span class="line">console.log(isNaN(NaN))        //<span class="string">"true"</span></span><br></pre></td></tr></table></figure>
-
-<p>除基本类型外，其余的都返回object,其中比较特殊的为null。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.log(typeof null)       //<span class="string">"object"</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="instanceof-检测对象在其原型链中是否存在一个构造函数的prototype属性。"><a href="#instanceof-检测对象在其原型链中是否存在一个构造函数的prototype属性。" class="headerlink" title="instanceof: 检测对象在其原型链中是否存在一个构造函数的prototype属性。"></a>instanceof: 检测对象在其原型链中是否存在一个构造函数的prototype属性。</h3><p>语法：object instanceof constructor<br>描述：constructor.prototype是否存在object的<code>原型链</code>上。存在则返回true,否则返回false<br>若object不是对象，则直接返回false</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var a = new Array()</span><br><span class="line">var obj = &#123;name:<span class="string">"Redxym"</span>&#125; </span><br><span class="line">var foo = <span class="function"><span class="title">function</span></span>() &#123;&#125;</span><br><span class="line">var time = new Date()</span><br><span class="line">console.log(a instanceof Array)             //<span class="literal">true</span></span><br><span class="line">console.log(obj instanceof Object)          //<span class="literal">true</span></span><br><span class="line">console.log(foo instanceof Function)        //<span class="literal">true</span></span><br><span class="line">console.log(time instanceof Date)           //<span class="literal">true</span></span><br><span class="line">console.log(12 instanceof Object)           //<span class="literal">false</span></span><br><span class="line">console.log(12 instanceof Number)           //<span class="literal">false</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="Object-prototype-toString-call"><a href="#Object-prototype-toString-call" class="headerlink" title="Object.prototype.toString.call()"></a>Object.prototype.toString.call()</h3><p>typeof与instanceof都有不完善的地方，Object.prototype.toString.call()返回[objec 对象类型]</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var a = new Array()</span><br><span class="line">var obj = &#123;name:<span class="string">"Redxym"</span>&#125; </span><br><span class="line">var foo = <span class="function"><span class="title">function</span></span>() &#123;&#125;</span><br><span class="line">var time = new Date()</span><br><span class="line">Object.prototype.toString.call(null)           //”[object Null]”</span><br><span class="line">Object.prototype.toString.call(undefined)      //”[object Undefined]”</span><br><span class="line">Object.prototype.toString.call(12)             //”[object Number]”</span><br><span class="line">Object.prototype.toString.call(a)              //”[object Array]”</span><br><span class="line">Object.prototype.toString.call(obj)            //”[object Object]”</span><br><span class="line">Object.prototype.toString.call(foo)            //”[object Function]”</span><br><span class="line">Object.prototype.toString.call(time)           //”[object Date]”</span><br></pre></td></tr></table></figure>
-
-<p>大家可能好奇为啥不直接用toString方法呢？因为toString方法为Object的原型方法，而Array、Function等类型作为Object实例，都重写了toString方法。不同的对象类型调用toString方法时，调用的重写之后的toString方法，而不会去调用Object上原型的toString方法。</p>
-<p>更多信息: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">请点击我</a></p>
-
+          <p>这是在2019年9月7日有赞面试的过程中被问到的一题。</p><p>由于ECMAScript的变量是松散类型的，即可以用来存放任何类型的数据，变量的数据类型由变量存储的值来确定。<br>ES6中规定有6种简单数据类型(也称为基本数据类型)<code>:Undefined</code>、<code>Null</code>、<code>Boolean</code>、<code>Number</code>、<code>String</code>、<code>Symbol</code>。<br>一种复杂数据类型:<code>Object</code>。</p>
+          <!--noindex-->
+          
+            <div class="post-button">
+              <a class="btn" href="/2019/10/06/面试之JS类型检测/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
